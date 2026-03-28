@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #e2e5eb transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+
+  body {
+    background: #f8f9fb;
+    color: #1f2937;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white border border-gray-200 rounded-2xl shadow-card;
+  }
+  .card-hover {
+    @apply card transition-all duration-200 ease-out hover:border-gray-300 hover:shadow-card-hover hover:translate-y-[-1px];
+  }
+  .btn-primary {
+    @apply bg-pitch-600 hover:bg-pitch-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-all duration-200 shadow-soft;
+  }
+  .btn-ghost {
+    @apply text-gray-500 hover:text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-xl transition-all duration-200;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full tracking-wide;
+  }
+  .badge-live {
+    @apply badge bg-red-50 text-red-600 border border-red-200;
+  }
+  .badge-finished {
+    @apply badge bg-gray-100 text-gray-600 border border-gray-200;
+  }
+  .badge-scheduled {
+    @apply badge bg-blue-50 text-blue-600 border border-blue-200;
+  }
+  .section-title {
+    @apply text-[11px] font-bold uppercase tracking-[0.1em] text-gray-400;
+  }
+}
