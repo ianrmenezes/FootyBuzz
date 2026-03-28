@@ -26,7 +26,7 @@ A soccer dashboard I built to track live scores, standings, and top scorers acro
 
 ```bash
 # clone it
-git clone https://github.com/YOUR_USERNAME/FootyBuzz.git
+git clone https://github.com/ianrmenezes/FootyBuzz.git
 cd FootyBuzz
 
 # install dependencies
