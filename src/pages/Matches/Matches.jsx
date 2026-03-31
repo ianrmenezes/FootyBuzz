@@ -32,16 +32,21 @@ export default function Matches() {
   const activeLeague = league || LEAGUES[0];
   const isTournament = TOURNAMENT_CODES.includes(activeLeague.code);
 
-  // For regular leagues: date range. For tournaments: fetch all matches
+
+  // For regular leagues: date range. For tournaments: fetch all matches.
+  // For 'finished' tab: fetch all finished matches (no date filter)
   const filters = useMemo(() => {
-    if (isTournament) return {}; // all matches for tournament
+    if (isTournament) return {};
+    if (statusFilter === "finished") {
+      return { status: "FINISHED" };
+    }
     const from = new Date();
     from.setDate(from.getDate() - 7);
     const to = new Date();
     to.setDate(to.getDate() + 14);
     const fmt = (d) => d.toISOString().split("T")[0];
     return { dateFrom: fmt(from), dateTo: fmt(to) };
-  }, [isTournament]);
+  }, [isTournament, statusFilter]);
 
   const {
     data,
