@@ -58,7 +58,7 @@ export default function Matches() {
     refetch,
   } = useFetch(
     (opts) => getCompetitionMatches(activeLeague.id, filters, opts),
-    [activeLeague.id, isTournament],
+    [activeLeague.id, isTournament, statusFilter],
     { autoRefresh: isTournament ? 0 : 120000 }
   );
 
