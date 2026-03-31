@@ -1,7 +1,8 @@
 export default async function handler(req, res) {
   const segments = Array.isArray(req.query.path) ? req.query.path.join("/") : req.query.path || "";
-  const url = new URL(req.url, `http://${req.headers.host}`);
-  const apiPath = `/${segments}${url.search}`;
+  // Use WHATWG URL API for parsing
+  const urlObj = new URL(req.url, `http://${req.headers.host}`);
+  const apiPath = `/${segments}${urlObj.search}`;
 
   // Longer cache for static-ish data, shorter for matches
   const isMatches = apiPath.includes("/matches");

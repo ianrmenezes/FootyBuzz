@@ -17,7 +17,10 @@ async function apiFetch(path, retries = 1) {
   return res.json();
 }
 
+
 export default async function handler(req, res) {
+  // Use WHATWG URL API for parsing (future-proof, even if not needed now)
+  // const urlObj = new URL(req.url, `http://${req.headers.host}`);
   const league = req.query.league || "2021";
   const today = new Date();
   const past = new Date(today);
