@@ -34,17 +34,20 @@ export default function Matches() {
 
 
   // For regular leagues: date range. For tournaments: fetch all matches.
-  // For 'finished' tab: fetch all finished matches (no date filter)
+  // For 'finished' tab: fetch finished matches from last 90 days (API limitation workaround)
   const filters = useMemo(() => {
     if (isTournament) return {};
+    const fmt = (d) => d.toISOString().split("T")[0];
     if (statusFilter === "finished") {
-      return { status: "FINISHED" };
+      const from = new Date();
+      from.setDate(from.getDate() - 90);
+      const to = new Date();
+      return { status: "FINISHED", dateFrom: fmt(from), dateTo: fmt(to) };
     }
     const from = new Date();
     from.setDate(from.getDate() - 7);
     const to = new Date();
     to.setDate(to.getDate() + 14);
-    const fmt = (d) => d.toISOString().split("T")[0];
     return { dateFrom: fmt(from), dateTo: fmt(to) };
   }, [isTournament, statusFilter]);
 
