@@ -57,7 +57,10 @@ export default function Matches() {
     error,
     refetch,
   } = useFetch(
-    (opts) => getCompetitionMatches(activeLeague.id, filters, opts),
+    (opts) => {
+      console.log("Fetching with filters:", filters, "league:", activeLeague.id);
+      return getCompetitionMatches(activeLeague.id, filters, opts);
+    },
     [activeLeague.id, isTournament, statusFilter],
     { autoRefresh: isTournament ? 0 : 120000 }
   );
