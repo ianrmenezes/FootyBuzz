@@ -95,9 +95,14 @@ export default function MatchList({
     groups[key].push(m);
   }
 
-  const sorted = Object.entries(groups).sort(([a], [b]) =>
-    a.localeCompare(b)
-  );
+
+  // Sort dates descending if all matches are finished, else ascending
+  let sorted = Object.entries(groups);
+  if (matches.length > 0 && matches.every((m) => m.status === "FINISHED")) {
+    sorted = sorted.sort(([a], [b]) => b.localeCompare(a)); // latest date first
+  } else {
+    sorted = sorted.sort(([a], [b]) => a.localeCompare(b));
+  }
 
   return (
     <div className="space-y-8">
